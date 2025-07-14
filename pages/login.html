@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kost Mewah Patemon Gombong - Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <div class="circle-container">
+          <div class="circle">
+            <img
+              src="../Image/logo.png"
+              alt="Kost Mewah Patemon Gombong Logo"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="title">
+        <img src="../Image/logoTeks.png" alt="Title Image" />
+      </div>
+    </header>
+
+    <div class="login-container">
+      <div class="login-box">
+        <h2>Login</h2>
+        <form id="loginForm" action="#" method="POST">
+          <div class="input-group">
+            <input type="email" name="email" id="email" placeholder="E-mail" required />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="register-link">
+            Belum punya akun? <a href="reservation-register.html">Daftar di sini</a>
+          </div>
+          <button type="submit" class="login-btn">Masuk</button>
+        </form>
+        
+        <!-- Loading indicator -->
+        <div id="loading" style="display: none; text-align: center; margin-top: 20px;">
+          <p>Sedang memproses login...</p>
+        </div>
+        
+        <!-- Error message -->
+        <div id="errorMessage" style="display: none; color: red; text-align: center; margin-top: 20px;">
+        </div>
+      </div>
+    </div>
+    
+    <script src="../js/auth.js"></script>
+    <script>
+      // Fungsi untuk menampilkan pesan error
+      function showError(message) {
+        const errorDiv = document.getElementById('errorMessage');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        
+        // Sembunyikan pesan error setelah 5 detik
+        setTimeout(() => {
+          errorDiv.style.display = 'none';
+        }, 5000);
+      }
+      
+      // Fungsi untuk menampilkan loading
+      function showLoading(show) {
+        const loadingDiv = document.getElementById('loading');
+        const submitBtn = document.querySelector('.login-btn');
+        
+        if (show) {
+          loadingDiv.style.display = 'block';
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sedang Login...';
+        } else {
+          loadingDiv.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Masuk';
+        }
+      }
+      
+      // Fungsi untuk menyimpan data login ke localStorage
+      function saveLoginData(responseData) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', responseData.data.user.email); // Menggunakan email sebagai userId
+        localStorage.setItem('userName', responseData.data.user.nama);
+        localStorage.setItem('userEmail', responseData.data.user.email);
+        localStorage.setItem('userRole', responseData.data.user.role);
+        localStorage.setItem('token', responseData.data.token);
+      }
+      
+      // Fungsi untuk redirect berdasarkan role
+      function redirectUser(role) {
+        if (role === 'admin') {
+          window.location.href = 'admin-dashboard.html';
+        } else if (role === 'penyewa') {
+          window.location.href = 'home.html';
+        } else {
+          window.location.href = 'home.html'; // Default redirect
+        }
+      }
+      
+      // Event listener untuk form login
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Ambil data dari form
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        
+        // Validasi input
+        if (!email || !password) {
+          showError('Email dan password harus diisi!');
+          return;
+        }
+        
+        // Validasi format email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showError('Format email tidak valid!');
+          return;
+        }
+        
+        // Tampilkan loading
+        showLoading(true);
+        
+        try {
+          // Kirim request login ke API
+          const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              Email: email,
+              Password: password
+            })
+          });
+          
+          const data = await response.json();
+          
+          // Sembunyikan loading
+          showLoading(false);
+          
+          if (response.ok && data.success) {
+            // Login berhasil
+            saveLoginData(data);
+            
+            // Tampilkan pesan sukses
+            alert('Login berhasil! Selamat datang, ' + data.data.user.nama);
+            
+            // Redirect berdasarkan role
+            redirectUser(data.data.user.role);
+            
+          } else {
+            // Login gagal
+            showError(data.message || 'Login gagal! Periksa email dan password Anda.');
+          }
+          
+        } catch (error) {
+          // Sembunyikan loading
+          showLoading(false);
+          
+          // Handle error network atau server
+          console.error('Error:', error);
+          showError('Terjadi kesalahan jaringan. Silakan coba lagi.');
+        }
+      });
+      
+      // Event listener untuk input fields (Enter key)
+      document.getElementById('email').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('password').focus();
+        }
+      });
+      
+      document.getElementById('password').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+      });
+      
+      // Cek apakah user sudah login saat halaman dimuat
+      window.addEventListener('load', function() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const userRole = localStorage.getItem('userRole');
+        
+        if (isLoggedIn === 'true' && userRole) {
+          // Jika sudah login, redirect ke halaman yang sesuai
+          redirectUser(userRole);
+        }
+      });
+    </script>
+  </body>
+</html>

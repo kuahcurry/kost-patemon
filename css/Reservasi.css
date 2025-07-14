@@ -1,0 +1,375 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  margin: 140px;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #bfa14a 0%, #e6c87a 100%);
+  padding: 0 32px;
+  height: 70px;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 2px 8px #0001;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  margin-right: 12px;
+}
+
+.brand {
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand span {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.nav-menu {
+  color: #fff;
+  font-size: 16px;
+}
+
+.nav-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 24px;
+}
+
+.main-content {
+  display: flex;
+  max-width: 900px;
+  margin: 140px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px #0002;
+  overflow: hidden;
+}
+
+.form-section {
+  flex: 1.2;
+  background: #fff;
+  padding: 40px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reservasi-form label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
+  color: #222;
+}
+
+.reservasi-form input,
+.reservasi-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  border: none;
+  border-radius: 8px;
+  background: #f2f2f2;
+  box-shadow: 2px 4px 8px #0001;
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.reservasi-form input:focus,
+.reservasi-form textarea:focus {
+  box-shadow: 0 0 0 2px #bfa14a55;
+}
+
+.info-section {
+  flex: 1;
+  background: #f4f4f4;
+  padding: 40px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-left: 2px solid #eee;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+}
+
+.info-list li {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.info-list .icon {
+  display: inline-block;
+  width: 28px;
+  font-size: 20px;
+  margin-right: 10px;
+  color: #bfa14a;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 18px 0;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #bfa14a 0%, #e6c87a 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px #0001;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(90deg, #a88c32 0%, #d6b85a 100%);
+  box-shadow: 0 2px 12px #bfa14a44;
+}
+
+/* Modal Overlay */
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(186,153,74,0.10);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+
+/* Modal Content */
+.pembayaran-modern {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 36px #bfa14a22;
+  padding: 38px 34px 30px 34px;
+  min-width: 320px;
+  max-width: 95vw;
+  border: none;
+  animation: modalShow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes modalShow {
+  from { transform: translateY(40px) scale(0.98); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Modal Title */
+.modal-title {
+  color: #bfa14a;
+  font-size: 1.45rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Rekening Card */
+.rekening-card {
+  background: #fffbe6;
+  border-radius: 14px;
+  padding: 20px 20px 14px 20px;
+  margin-bottom: 22px;
+  font-size: 1.08rem;
+  color: #7a5c1c;
+  box-shadow: 0 2px 8px #bfa14a11;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rekening-card div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rekening-icon {
+  color: #bfa14a;
+  font-size: 1.25em;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Total Bayar */
+.total-bayar {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #7a5c1c;
+  text-align: center;
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.2px;
+}
+
+/* Form Bukti */
+.form-bukti label {
+  font-weight: 600;
+  color: #7a5c1c;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 1rem;
+}
+.form-bukti input[type="file"] {
+  width: 100%;
+  background: #f8f5e6;
+  border: 1.5px solid #e6c87a;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: border 0.18s;
+}
+.form-bukti input[type="file"]:focus {
+  border: 1.5px solid #bfa14a;
+}
+
+/* Button Row */
+.modal-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(90deg, #bfa14a 0%, #e6c87a 100%);
+  color: #fff;
+  border: none;
+  padding: 13px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #bfa14a22;
+  transition: background 0.18s, box-shadow 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #a88c32 0%, #d6b85a 100%);
+  box-shadow: 0 4px 16px #bfa14a33;
+}
+
+/* Outline Button */
+.btn-outline {
+  background: #fff;
+  color: #bfa14a;
+  border: 2px solid #bfa14a;
+  padding: 13px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+}
+.btn-outline:hover {
+  background: #fffbe6;
+  color: #a88c32;
+  border-color: #a88c32;
+}
+
+/* Modal Note */
+.modal-note {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.1px;
+}
+
+.accordion-instruksi {
+  margin-bottom: 22px;
+}
+.accordion-btn {
+  width: 100%;
+  background: #fffbe6;
+  color: #bfa14a;
+  border: 1.5px solid #e6c87a;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.18s, color 0.18s;
+  margin-bottom: 0;
+}
+.accordion-btn:hover, .accordion-btn.active {
+  background: #f8f0d0;
+  color: #a88c32;
+}
+.accordion-btn .fa-chevron-down {
+  transition: transform 0.2s;
+}
+.accordion-btn.active .fa-chevron-down {
+  transform: rotate(180deg);
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 2px 8px #bfa14a11;
+  transition: max-height 0.25s cubic-bezier(.4,0,.2,1), padding 0.2s;
+  padding: 0 18px;
+}
+.accordion-content.open {
+  padding: 16px 18px 12px 18px;
+  max-height: 400px;
+}
+.instruksi-detail {
+  color: #7a5c1c;
+  font-size: 0.98rem;
+}
+.instruksi-detail ol {
+  margin: 8px 0 16px 18px;
+  padding: 0;
+}
+.instruksi-detail b {
+  color: #bfa14a;
+}

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri Kamar - Kost Mewah Patemon Gombong</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Modern Bootstrap & Custom Style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+      body {    
+        font-family: 'Montserrat', Arial, sans-serif;
+      }
+      .gallery-section {
+        margin: 120px auto 0 auto;
+        max-width: 1000px;
+        width: 100%;
+        text-align: center;
+      }
+      .gallery-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 1.5rem;
+        padding: 12px 40px;
+        margin: 0 auto 24px auto;
+        display: inline-block;
+        letter-spacing: 1px;
+      }
+      .gallery-bg {
+        background: #fff;
+        border-radius: 20px;
+        padding: 36px 28px 28px 28px;
+        margin-bottom: 48px;
+        transition: box-shadow 0.2s;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 36px;
+      }
+      .gallery-grid img {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 2px 12px rgba(186,153,74,0.10);
+        border: 2px solid #f8e07a;
+        background: #fffbe6;
+        transition: transform 0.18s, box-shadow 0.18s;
+        cursor: pointer;
+      }
+      .gallery-grid img:hover {
+        transform: scale(1.04) rotate(-1deg);
+        box-shadow: 0 8px 32px rgba(186,153,74,0.18);
+        border-color: #b99a3e;
+      }
+      @media (max-width: 900px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-grid img {
+          height: 90px;
+        }
+      }
+      .fasilitas-section {
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto 48px auto;
+      }
+      .fasilitas-card {
+        background: #fff;
+        border-radius: 18px;
+        margin-bottom: 32px;
+        padding: 28px 36px 20px 36px;
+        position: relative;
+        text-align: left;
+      }
+      .fasilitas-card .card-title {
+        display: flex;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 18px;
+        letter-spacing: 0.5px;
+      }
+      .fasilitas-card .card-title img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        margin-right: 12px;
+        vertical-align: middle;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.07));
+      }
+      .fasilitas-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px 24px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 0;
+      }
+      @media (max-width: 900px) {
+        .fasilitas-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .fasilitas-list {
+          grid-template-columns: 1fr;
+        }
+      }
+      .fasilitas-list .fasilitas-item {
+        display: flex;
+        align-items: center;
+        min-width: 120px;
+        gap: 10px;
+        padding: 8px 14px;
+      }
+      .fasilitas-list .fasilitas-item img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+        margin-right: 8px;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.07));
+      }
+      .footer {
+        margin-top: 48px;
+        background: #fffbe6;
+        border-top: 2px solid #f8e07a;
+        padding: 32px 0 0 0;
+      }
+      .footer-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+      .footer-menu {
+        display: flex;
+        gap: 32px;
+      }
+      .footer-menu-col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer-menu-col a {
+        color: #b99a3e;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.18s;
+      }
+      .footer-menu-col a:hover {
+        color: #a68b3a;
+        text-decoration: underline;
+      }
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: #f8e07a;
+        margin: 18px 0;
+      }
+      .footer-info {
+        color: #b99a3e;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      .footer-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .footer-address {
+        font-size: 1rem;
+        color: #a68b3a;
+      }
+      .footer-copyright {
+        text-align: center;
+        color: #b99a3e;
+        font-size: 1rem;
+        margin: 18px 0 0 0;
+        font-weight: 500;
+      }
+      /* Swiper khusus untuk Ketersediaan Kamar */
+      swiper-container.kamar-swiper {
+        width: 100%;
+        height: 298px;
+        min-height: 0;
+        padding-bottom: 10px;
+        --swiper-pagination-color: #b99a3e;
+      }
+      swiper-slide.kamar-slide {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        background: transparent;
+        height: 260px;
+        width: auto !important;
+        min-width: 220px;
+        max-width: 240px;
+        padding: 0 8px;
+        box-sizing: border-box;
+      }
+      .kamar-modern-card {
+        width: 100%;
+        max-width: 220px;
+        min-width: 180px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .kamar-modern-card:hover {
+        transform: none;
+      }
+      .kamar-modern-card .card-img-top {
+        border-radius: 14px 14px 0 0;
+        object-fit: cover;
+        height: 100px;
+        width: 100%;
+        background: #fffbe6;
+        border-bottom: 1px solid #f8e07a;
+      }
+      .kamar-modern-card .card-body {
+        padding: 10px 14px 14px 14px;
+        background: #fff;
+        border-radius: 0 0 14px 14px;
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .kamar-modern-card .fw-bold {
+        color: #b99a3e;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .kamar-modern-card .text-muted {
+        color: #888;
+        font-size: 0.97rem;
+        margin-bottom: 6px;
+      }
+      .kamar-modern-card .btn,
+      .kamar-modern-card .badge {
+        display: inline-block;
+        min-width: 110px;      /* Lebar minimal agar seragam */
+        text-align: center;
+        font-size: 0.97rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-top: 6px;
+        padding: 8px 0;        /* Tinggi seragam */
+        border-radius: 999px;
+        box-sizing: border-box;
+      }
+      @media (max-width: 900px) {
+        swiper-slide.kamar-slide {
+          max-width: 90vw;
+        }
+        .kamar-modern-card {
+          max-width: 90vw;
+        }
+      }
+      @media (max-width: 600px) {
+        swiper-slide.kamar-slide {
+          max-width: 98vw;
+          min-width: 0;
+        }
+        .kamar-modern-card {
+          max-width: 98vw;
+          min-width: 0;
+        }
+        .kamar-modern-card .card-img-top {
+          height: 70px;
+        }
+        .kamar-modern-card .card-body {
+          padding: 8px 8px 10px 8px;
+          min-height: 40px;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/kamar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div
+        class="logo"
+        style="cursor: pointer"
+        onclick="window.location.href='home.html'"
+      >
+        <div class="circle-container">
+          <div class="circle">
+            <img
+              src="../Image/logo.png"
+              alt="Kost Mewah Patemon Gombong"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="title"
+        style="cursor: pointer"
+        onclick="window.location.href='home.html'"
+      >
+        <img src="../Image/logoTeks.png" alt="Title Image" />
+      </div>
+      <div class="menu">
+        <nav>
+          <nav class="menu-list">
+            <li><a href="home.html">MENU</a></li>
+            <li class="border"></li>
+            <li class="active"><a href="kamar.html">KAMAR</a></li>
+            <li class="border"></li>
+            <li><a href="akun.html">AKUN</a></li>
+          </nav>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <!-- Galeri Kamar Section -->
+      <section class="gallery-section">
+        <div class="border-0 shadow gallery-bg">
+          <span class="gallery-title">Galeri Kamar</span>
+          <div class="gallery-grid">
+            <img src="../Image/dummy.png" alt="Kamar 1" />
+            <img src="../Image/dummy.png" alt="Kamar 2" />
+            <img src="../Image/dummy.png" alt="Kamar 3" />
+            <img src="../Image/dummy.png" alt="Kamar 4" />
+            <img src="../Image/dummy.png" alt="Kamar 5" />
+            <img src="../Image/dummy.png" alt="Kamar 6" />
+            <img src="../Image/dummy.png" alt="Kamar 7" />
+            <img src="../Image/dummy.png" alt="Kamar 8" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Ketersediaan Kamar Section (Modern Bootstrap, Grid) -->
+      <section class="fasilitas-section py-4">
+        <div class="border-0 shadow p-3 bg-white rounded-4 mb-4">
+          <div class="d-flex align-items-center mb-3" style="gap:16px;">
+            <span class="gallery-title mb-0" style="font-size:1.3rem;">Ketersediaan Kamar</span>
+          </div>
+          <swiper-container class="kamar-swiper" space-between="16" slides-per-view="3" id="kamar-swiper">
+            <!-- Swiper-slide akan diisi otomatis oleh JS -->
+          </swiper-container>
+        </div>
+      </section>
+      <section class="fasilitas-section">
+        <div class="border-0 shadow fasilitas-card">
+          <div class="card-title">
+            <img src="../Image/logofasilitas.png" alt="Fasilitas Kamar" /> Fasilitas Kamar
+          </div>
+          <div class="fasilitas-list">
+            <div class="fasilitas-item">
+              <img src="../Image/kasur.png" alt="Kasur" /> Kasur
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/kursi.png" alt="Kursi" /> Kursi
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/ac.png" alt="AC" /> AC
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/lemari.png" alt="Lemari" /> Lemari
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/meja.png" alt="Meja" /> Meja
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/kamarMandi.png" alt="Kamar Mandi" /> Kamar Mandi
+            </div>
+          </div>
+        </div>
+        <div class="border-0 shadow fasilitas-card">
+          <div class="card-title">
+            <img src="../Image/logofasilitas.png" alt="Fasilitas Kamar" /> Fasilitas Umum
+          </div>
+          <div class="fasilitas-list">
+            <div class="fasilitas-item">
+              <img src="../Image/wifi.png" alt="Wifi" /> Wifi
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/dapur.png" alt="Dapur" /> Dapur
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/kamarMandi.png" alt="Kamar Mandi Luar" /> Kamar Mandi Luar
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/parkiran.png" alt="Parkiran" /> Parkiran
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/ruangTamu.png" alt="Ruang Tamu" /> Ruang Tamu
+            </div>
+          </div>
+        </div>
+        <div class="border-0 shadow fasilitas-card">
+          <div class="card-title">
+            <img src="../Image/logofasilitas.png" alt="Fasilitas Kamar" /> Tempat Terdekat </span>
+          </div>
+          <div class="fasilitas-list">
+            <div class="fasilitas-item">
+              <img src="../Image/masjid.png" alt="Masjid" /> Masjid
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/atm.png" alt="ATM" /> ATM
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/tempatMakan.png" alt="Tempat Makan" /> Tempat
+              Makan
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/supermarket.png" alt="Supermarket" />
+              Supermarket
+            </div>
+            <div class="fasilitas-item">
+              <img src="../Image/sekolah.png" alt="Sekolah" /> Sekolah
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-menu">
+          <div class="footer-menu-col">
+            <a href="#">Menu</a>
+            <a href="#">Kamar</a>
+          </div>
+          <div class="footer-menu-col">
+            <a href="#">Reservasi</a>
+            <a href="#">Akun</a>
+          </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div
+          <div class="footer-title">Kost Putri MEWAH Patemon</div>
+          <div class="footer-address">
+            Jl. Serayu IV No. 13 03/01 Desa Patemon,<br />Kecamatan Gombong,
+            Kabupaten Kebumen
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        Copyright Kos MEWAH Patemon, Gombong 2025
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script>
+async function loadKamar() {
+  const container = document.getElementById('kamar-swiper');
+  try {
+    const res = await fetch('http://localhost:3000/api/kamar');
+    const data = await res.json();
+    if (!data.success) throw new Error('Gagal mengambil data kamar');
+
+    // Hapus slide lama jika ada
+    container.innerHTML = '';
+
+    data.data.forEach(kamar => {
+      const slide = document.createElement('swiper-slide');
+      slide.className = 'kamar-slide';
+      slide.innerHTML = `
+        <div class="card h-100 shadow-sm kamar-modern-card">
+          <img src="${kamar.gambar || '../Image/dummy.png'}" class="card-img-top" alt="${kamar.Nama_Kamar}">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="fw-bold">${kamar.Nama_Kamar}</div>
+            <div class="text-muted">${kamar.Letak}</div>
+            ${
+              kamar.Ketersediaan == 1
+                ? `<button class="btn btn-success rounded-pill px-3 py-2 shadow-sm" onclick="window.location.href='reservation-register.html?id=${encodeURIComponent(kamar.No_Kamar)}'">Booking</button>`
+                : `<span class="badge rounded-pill bg-danger px-3 py-2 shadow-sm">Terisi</span>`
+            }
+          </div>
+        </div>
+      `;
+      container.appendChild(slide);
+    });
+  } catch (err) {
+    container.innerHTML = `<div style="color:red;padding:24px;">Gagal memuat data kamar</div>`;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', loadKamar);
+</script>
+  </body>
+</html>

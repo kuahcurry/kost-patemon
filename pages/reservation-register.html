@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kost Mewah Patemon Gombong - Hom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/Reservasi.css" />
+  <link rel="stylesheet" type="text/css" href="../css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="home.html" class="logo-link">
+          <div class="circle-container">
+              <div class="circle">
+                  <img src="../Image/logo.png" alt="Kost Mewah Patemon Gombong Logo">
+              </div>
+          </div>
+      </a>
+  </div>
+  <div class="title">
+      <a href="home.html" class="title-link">
+          <img src="../Image/logoTeks.png" alt="Title Image">
+      </a>
+  </div>
+</header>
+  <div class="main-content">
+    <div class="form-section">
+      <form class="reservasi-form">
+        <label>Nama Lengkap</label>
+        <input type="text" placeholder="Nama Lengkap" required />
+        <label>Email</label>
+        <input type="email" placeholder="Email" required />
+        <label>Password</label>
+        <input type="password" placeholder="Password" required />
+        <label>Konfirmasi Password</label>
+        <input type="password" placeholder="Konfirmasi Password" required />
+        <label>No. Telp</label>
+        <input type="tel" placeholder="No. Telp" required />
+        <label>Alamat</label>
+        <textarea placeholder="Alamat" rows="3" required></textarea>
+      </form>
+    </div>
+    <div class="info-section">
+      <div class="info-title">KETENTUAN</div>
+      <ul class="info-list">
+        <li><span class="icon">$</span> Harga kamar per-bulan Rp. 900.000,-</li>
+        <li><span class="icon">&#9993;</span> Pengguna akan menerima email kurang dari 2 hari</li>
+        <li><span class="icon">&#9742;</span> 088216003562 untuk kontak bantuan!</li>
+      </ul>
+      <hr />
+      <button class="btn-submit">Kirim</button>
+    </div>
+  </div>
+
+  <!-- Modal Pembayaran -->
+<div id="modalPembayaran" class="modal" style="display:none;">
+  <div class="modal-content pembayaran-modern">
+    <h3 class="modal-title">
+      <i class="fa-solid fa-receipt"></i>
+      Instruksi Pembayaran
+    </h3>
+    <div class="rekening-card">
+      <div>
+        <span class="rekening-icon"><i class="fa-solid fa-building-columns"></i></span>
+        <b>Bank:</b> BCA
+      </div>
+      <div>
+        <span class="rekening-icon"><i class="fa-solid fa-credit-card"></i></span>
+        <b>No. Rekening:</b> 1234567890
+      </div>
+      <div>
+        <span class="rekening-icon"><i class="fa-solid fa-id-card"></i></span>
+        <b>Atas Nama:</b> Kost Mewah Patemon
+      </div>
+    </div>
+    <div class="total-bayar">
+      Total Bayar: <span id="totalBayarModalValue">Rp. 900.000</span>
+    </div>
+
+    <!-- Dropdown Instruksi di dalam modal dan di bawah total bayar -->
+    <div class="accordion-instruksi">
+      <button class="accordion-btn" type="button">
+        <i class="fa-solid fa-chevron-down"></i> Lihat Instruksi Pembayaran ATM & M-Banking
+      </button>
+      <div class="accordion-content">
+        <div class="instruksi-detail">
+          <b>Instruksi via ATM BCA:</b>
+          <ol>
+            <li>Masukkan kartu ATM dan PIN Anda.</li>
+            <li>Pilih menu <b>Transaksi Lainnya</b> &gt; <b>Transfer</b> &gt; <b>Ke Rekening BCA</b>.</li>
+            <li>Masukkan nomor rekening: <b>1234567890</b></li>
+            <li>Masukkan nominal transfer sesuai tagihan.</li>
+            <li>Ikuti instruksi hingga transaksi selesai.</li>
+          </ol>
+          <b>Instruksi via M-Banking BCA:</b>
+          <ol>
+            <li>Login aplikasi BCA Mobile.</li>
+            <li>Pilih menu <b>m-Transfer</b> &gt; <b>Antar Rekening BCA</b>.</li>
+            <li>Masukkan nomor rekening: <b>1234567890</b></li>
+            <li>Masukkan nominal transfer sesuai tagihan.</li>
+            <li>Ikuti instruksi hingga transaksi selesai.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- END Dropdown -->
+
+    <form id="formPembayaran" class="form-bukti">
+      <label for="buktiPembayaran">Upload Bukti Pembayaran:</label>
+      <input type="file" id="buktiPembayaran" name="buktiPembayaran" accept="image/*" required>
+      <!-- Tambahkan input hidden untuk id kamar di dalam formPembayaran -->
+      <input type="hidden" id="idKamar" name="idKamar" />
+      <div class="modal-btn-row">
+        <button type="submit" class="btn-gradient">
+          <i class="fa-solid fa-upload"></i> Kirim Bukti Pembayaran
+        </button>
+        <button type="button" id="batalPembayaran" class="btn-outline">
+          Batal
+        </button>
+      </div>
+    </form>
+    <div class="modal-note">
+      Setelah pembayaran dan upload bukti, reservasi Anda akan segera diproses.
+    </div>
+  </div>
+</div>
+
+  <script>
+document.querySelector('.btn-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('modalPembayaran').style.display = 'flex';
+});
+document.getElementById('batalPembayaran').addEventListener('click', function() {
+  document.getElementById('modalPembayaran').style.display = 'none';
+});
+
+// Ambil id kamar dari URL dan set ke input hidden
+const urlParams = new URLSearchParams(window.location.search);
+const idKamar = urlParams.get('id');
+if (idKamar) {
+  document.getElementById('idKamar').value = idKamar;
+}
+
+document.getElementById('formPembayaran').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Ambil data user dari form registrasi
+  const form = document.querySelector('.reservasi-form');
+  const Nama = form.querySelector('input[placeholder="Nama Lengkap"]').value;
+  const Email = form.querySelector('input[placeholder="Email"]').value;
+  const Password = form.querySelector('input[placeholder="Password"]').value;
+  const No_telp = form.querySelector('input[placeholder="No. Telp"]').value;
+  const Alamat = form.querySelector('textarea[placeholder="Alamat"]').value;
+  const No_Kamar = document.getElementById('idKamar').value;
+  const role = 'penyewa'; // Role default
+  // 1. Register user
+  let registerRes;
+  let userId;
+  try {
+    registerRes = await fetch('http://localhost:3000/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ Nama, No_telp, Alamat, Email, Password, role })
+    });
+    const registerData = await registerRes.json();
+    if (!registerData.success) {
+      alert(registerData.message || 'Registrasi gagal!');
+      return;
+    }
+    userId = registerData.userId; // Jika backend mengembalikan userId
+  } catch (err) {
+    alert('Registrasi gagal!');
+    return;
+  }
+
+  // 2. Kirim reservasi
+  let reservasiId;
+  try {
+    const Tanggal_Reservasi = new Date().toISOString();
+    const reservasiRes = await fetch('http://localhost:3000/api/reservasi', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ No_Kamar, Tanggal_Reservasi, userId })
+    });
+    const reservasiData = await reservasiRes.json();
+    if (!reservasiData.success) {
+      alert(reservasiData.message || 'Reservasi gagal!');
+      return;
+    }
+    reservasiId = reservasiData.reservasiId; // Jika backend mengembalikan reservasiId
+  } catch (err) {
+    alert('Reservasi gagal!');
+    return;
+  }
+});
+
+document.querySelectorAll('.accordion-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('active');
+    var content = btn.nextElementSibling;
+    content.classList.toggle('open');
+    // Icon rotate
+    var icon = btn.querySelector('.fa-chevron-down');
+    if (btn.classList.contains('active')) {
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      icon.style.transform = '';
+    }
+  });
+});
+</script>
+</body>
+</html>
