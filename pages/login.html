@@ -653,14 +653,14 @@
             </button>
           </form>
 
-          <!-- Error message -->
-          <div id="errorMessage" class="error-message">
+          <!-- Error message (hidden by default, using toast messages instead) -->
+          <div id="errorMessage" class="error-message" style="display: none;">
             <i class="fas fa-exclamation-triangle"></i>
             <span id="errorText"></span>
           </div>
 
-          <!-- Success message -->
-          <div id="successMessage" class="success-message">
+          <!-- Success message (hidden by default, using toast messages instead) -->
+          <div id="successMessage" class="success-message" style="display: none;">
             <i class="fas fa-check-circle"></i>
             <span id="successText"></span>
           </div>
@@ -777,24 +777,16 @@
         showToast(message, "info");
       }
 
-      // Fungsi untuk menampilkan pesan error
+      // Fungsi untuk menampilkan pesan error (now using toast)
       function showError(message) {
+        // Use toast message instead of inline error for better UX
+        showErrorToast(message);
+        
+        // Hide inline error message since we're using toast
         const errorDiv = document.getElementById("errorMessage");
-        const errorText = document.getElementById("errorText");
-        const successDiv = document.getElementById("successMessage");
-
-        // Sembunyikan success message jika ada
-        successDiv.style.display = "none";
-
-        errorText.textContent = message;
-        errorDiv.style.display = "block";
-        errorDiv.classList.add("fade-in");
-
-        // Sembunyikan pesan error setelah 5 detik
-        setTimeout(() => {
+        if (errorDiv) {
           errorDiv.style.display = "none";
-          errorDiv.classList.remove("fade-in");
-        }, 5000);
+        }
       }
 
       // Fungsi untuk menampilkan pesan success (deprecated - use showToast instead)
@@ -867,14 +859,14 @@
 
           // Validasi input
           if (!email || !password) {
-            showError("Email dan password harus diisi!");
+            showErrorToast("Email dan password harus diisi!");
             return;
           }
 
           // Validasi format email
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(email)) {
-            showError("Format email tidak valid!");
+            showErrorToast("Format email tidak valid!");
             return;
           }
 
@@ -917,7 +909,7 @@
               }, 1500);
             } else {
               // Login gagal
-              showError(
+              showErrorToast(
                 data.message || "Login gagal! Periksa email dan password Anda."
               );
             }
@@ -927,7 +919,7 @@
 
             // Handle error network atau server
             console.error("Error:", error);
-            showError("Terjadi kesalahan jaringan. Silakan coba lagi.");
+            showErrorToast("Terjadi kesalahan jaringan. Silakan coba lagi.");
           }
         });
 
