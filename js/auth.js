@@ -177,4 +177,12 @@ function clearAuthData() {
   localStorage.removeItem("authToken");
   localStorage.removeItem("login_time");
   localStorage.removeItem("admin_welcome_shown");
+  
+  // Clear session storage for welcome messages
+  const keys = Object.keys(sessionStorage);
+  keys.forEach(key => {
+    if (key.startsWith("admin_welcome_")) {
+      sessionStorage.removeItem(key);
+    }
+  });
 }
