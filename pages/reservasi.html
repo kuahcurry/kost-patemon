@@ -378,7 +378,7 @@
       /* Toast Message Styles - Override Bootstrap */
       .toast:not(.bootstrap-toast) {
         position: fixed !important;
-        top: 20px !important;
+        top: 100px !important;
         right: 20px !important;
         background: linear-gradient(135deg, #28a745, #20c997) !important;
         color: white !important;
@@ -400,13 +400,13 @@
         opacity: 1 !important;
       }
 
-      /* Welcome Toast - positioned below header */
+      /* Welcome Toast - positioned below header and right corner */
       .toast.welcome:not(.bootstrap-toast) {
         position: fixed !important;
         top: 100px !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) translateY(-100%) !important;
+        right: 20px !important;
+        left: auto !important;
+        transform: translateX(100%) !important;
         background: linear-gradient(135deg, #28a745, #20c997) !important;
         box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3) !important;
         min-width: 350px !important;
@@ -415,11 +415,11 @@
       }
 
       .toast.welcome.show:not(.bootstrap-toast) {
-        transform: translateX(-50%) translateY(0) !important;
+        transform: translateX(0) !important;
       }
 
       .toast.welcome.hide:not(.bootstrap-toast) {
-        transform: translateX(-50%) translateY(-100%) !important;
+        transform: translateX(100%) !important;
       }
 
       .toast.show:not(.bootstrap-toast) {
@@ -484,36 +484,38 @@
       /* Responsive Design */
       @media (max-width: 768px) {
         .toast:not(.bootstrap-toast) {
+          top: 90px !important;
           right: 15px !important;
           left: 15px !important;
           min-width: auto !important;
           max-width: none !important;
-          transform: translateY(-100%) !important;
+          transform: translateX(100%) !important;
         }
 
         .toast.show:not(.bootstrap-toast) {
-          transform: translateY(0) !important;
+          transform: translateX(0) !important;
         }
 
         .toast.hide:not(.bootstrap-toast) {
-          transform: translateY(-100%) !important;
+          transform: translateX(100%) !important;
         }
 
         /* Welcome toast responsive */
         .toast.welcome:not(.bootstrap-toast) {
+          top: 90px !important;
           left: 15px !important;
           right: 15px !important;
           min-width: auto !important;
           max-width: none !important;
-          transform: translateY(-100%) !important;
+          transform: translateX(100%) !important;
         }
 
         .toast.welcome.show:not(.bootstrap-toast) {
-          transform: translateY(0) !important;
+          transform: translateX(0) !important;
         }
 
         .toast.welcome.hide:not(.bootstrap-toast) {
-          transform: translateY(-100%) !important;
+          transform: translateX(100%) !important;
         }
       }
 

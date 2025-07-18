@@ -1723,12 +1723,16 @@
         const sessionWelcomeKey = `admin_welcome_${currentLoginTime}`;
 
         // Show welcome toast only if it hasn't been shown for this specific login session
-        if (user.nama && currentLoginTime && !sessionStorage.getItem(sessionWelcomeKey)) {
+        if (
+          user.nama &&
+          currentLoginTime &&
+          !sessionStorage.getItem(sessionWelcomeKey)
+        ) {
           showWelcomeToast(user.nama);
           // Mark welcome as shown for this login session using sessionStorage
           // This will be cleared when the browser tab is closed, ensuring welcome shows on next login
           sessionStorage.setItem(sessionWelcomeKey, "true");
-          
+
           // Also set a flag in localStorage to track that this login session has shown welcome
           localStorage.setItem("admin_welcome_shown", currentLoginTime);
         }
@@ -1792,7 +1796,7 @@
 
             // Clear welcome toast flag when logging out
             localStorage.removeItem("admin_welcome_shown");
-            
+
             // Clear session storage for welcome messages
             const currentLoginTime = localStorage.getItem("login_time");
             if (currentLoginTime) {
