@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kost Mewah Patemon Gombong - Hom</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      /* Toast Message Styles */
+      .toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        min-width: 300px;
+        max-width: 400px;
+        transform: translateX(100%);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Welcome Toast - positioned below header */
+      .toast.welcome {
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(-100%);
+        background: linear-gradient(135deg, #28a745, #20c997);
+        box-shadow: 0 8px 32px rgba(40, 167, 69, 0.3);
+        min-width: 350px;
+        max-width: 500px;
+        z-index: 9999;
+      }
+
+      .toast.welcome.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .toast.welcome.hide {
+        transform: translateX(-50%) translateY(-100%);
+      }
+
+      .toast.show {
+        transform: translateX(0);
+      }
+
+      .toast.hide {
+        transform: translateX(100%);
+      }
+
+      .toast.error {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        box-shadow: 0 8px 32px rgba(220, 53, 69, 0.3);
+      }
+
+      .toast.warning {
+        background: linear-gradient(135deg, #ffc107, #e0a800);
+        box-shadow: 0 8px 32px rgba(255, 193, 7, 0.3);
+        color: #212529;
+      }
+
+      .toast.info {
+        background: linear-gradient(135deg, #17a2b8, #138496);
+        box-shadow: 0 8px 32px rgba(23, 162, 184, 0.3);
+      }
+
+      .toast-icon {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .toast-message {
+        flex: 1;
+        line-height: 1.4;
+      }
+
+      .toast-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      .toast-close:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .toast.warning .toast-close {
+        color: #212529;
+      }
+
+      .toast.warning .toast-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .toast {
+          right: 15px;
+          left: 15px;
+          min-width: auto;
+          max-width: none;
+          transform: translateY(-100%);
+        }
+
+        .toast.show {
+          transform: translateY(0);
+        }
+
+        .toast.hide {
+          transform: translateY(-100%);
+        }
+
+        /* Welcome toast responsive */
+        .toast.welcome {
+          left: 15px;
+          right: 15px;
+          min-width: auto;
+          max-width: none;
+          transform: translateY(-100%);
+        }
+
+        .toast.welcome.show {
+          transform: translateY(0);
+        }
+
+        .toast.welcome.hide {
+          transform: translateY(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="home.html" class="logo-link">
+          <div class="circle-container">
+            <div class="circle">
+              <img
+                src="../Image/logo.png"
+                alt="Kost Mewah Patemon Gombong Logo"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="title">
+        <a href="home.html" class="title-link">
+          <img src="../Image/logoTeks.png" alt="Title Image" />
+        </a>
+      </div>
+      <div class="menu">
+        <nav>
+          <nav class="menu-list">
+            <li class="active"><a href="home.html">MENU</a></li>
+            <li class="border"></li>
+            <li><a href="kamar.html">KAMAR</a></li>
+            <li class="border"></li>
+            <li><a href="akun.html">AKUN</a></li>
+          </nav>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="content-1">
+        <div class="left-section">
+          <div class="left-section-content">
+            <h2>SELAMAT DATANG DI KOST MEWAH!</h2>
+            <p>
+              Hunian nyaman, aman, dan strategis untuk Anda yang mencari tempat
+              tinggal terbaik. Yuk temukan tempat tinggal nyamanmu hanya dalam
+              beberapa klik!
+            </p>
+            <a href="#content-2" class="btn-secondary">LIHAT SELENGKAPNYA →</a>
+          </div>
+        </div>
+        <div class="right-section">
+          <img src="../Image/kos.png" alt="Building exterior of Kost Mewah" />
+        </div>
+      </div>
+
+      <div class="content-2" id="content-2">
+        <h2>KEUNGGULAN KOS KAMI</h2>
+        <div class="feature">
+          <swiper-container
+            class="mySwiper"
+            pagination="true"
+            pagination-clickable="false"
+            space-between="30"
+            slides-per-view="3"
+          >
+            <swiper-slide>
+              <img src="../image/parkiran1.png" />
+              <h3>Parkir Motor dan Mobil Luas</h3>
+              <p>
+                Parkiran kendaraan dengan ruang yang luas untuk lebih dari lima
+                motor dan tiga mobil dengan halaman yang melegakan.
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <img src="../image/kamar_mandi1.png" />
+              <h3>Air Conditioner dan WIFI</h3>
+              <p>
+                Air Conditioner dengan ukuran 1/2 PK yang dapat mendinginkan
+                satu kamar dengan cepat dan WIFI dengan kecepatan yang cukup
+                untuk kebutuhan Anda sehari-hari.
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <img src="../image/dummy.png" />
+              <h3>Servis Laptop dan Komputer</h3>
+              <p>
+                Servis Laptop dan Komputer yang dapat dihubungi dengan nomor
+                yang sama dengan admin kos, memudahkan Anda untuk memperbaiki PC
+                Anda!
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <img src="../image/dummy.png" />
+              <h3>Keamanan 24/7</h3>
+              <p>
+                Kos kami dilengkapi dengan CCTV untuk setiap sudut parkiran,
+                dengan pantauan 24 Jam selama seminggu.
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <img src="../image/dummy.png" />
+              <h3>Lokasi Strategis</h3>
+              <p>
+                Kos dengan jarak yang relatif dekat dengan RSU Palang Biru,
+                Alun-Alun Manunggal, Pasar Gombong, Minimarket Alfamart, RS PKU
+                Muhammadiyah, Cafe.
+              </p>
+            </swiper-slide>
+            <swiper-slide>
+              <img src="../image/dummy.png" />
+              <h3>Pemandangan Memukau</h3>
+              <p>
+                Dengan hamparan sawah sepanjang mata memandang dan vibes
+                pedesaan, pemandangan pagi dari kos MEWAH Putri Patemon
+                memanjakan mata Anda terutama di pagi hari!
+              </p>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+      </div>
+      <div class="content-3">
+        <h2 class="review-title">ULASAN KOS</h2>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="review-card-content">
+                <div class="review-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tincidunt efficitur maximus. Nullam eget malesuada erat. Cras
+                  eu velit vitae purus rhoncus iaculis ut sit amet est.
+                  Pellentesque commodo tempor dui vitae pulvinar. Etiam pretium
+                  pharetra lectus, at ornare leo pellentesque et. Aliquam mauris
+                  leo, congue a arcu ut, interdum euismod erat. Ut magna nulla,
+                  aliquam et feugiat rhoncus, aliquet at orci. Etiam quis nisl
+                  eu tellus ornare aliquet. Sed porttitor, nulla at dictum
+                  lobortis, odio nisl commodo urna, at volutpat tellus arcu sed
+                  enim. Proin in quam ligula. Vestibulum quam nibh, condimentum
+                  vitae nisi nec, cursus accumsan elit. Nulla interdum quam
+                  mollis, scelerisque metus vel, pretium urna. Nam at purus nec
+                  nulla suscipit ornare nec eget eros.
+                </div>
+                <div class="review-side">
+                  <div class="review-avatar"></div>
+                  <div class="review-author">
+                    <ul>
+                      <li>Miss XxX</li>
+                      <li>~ Agustus 2024</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-4">
+        <h2>LOKASI KAMI</h2>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1163.741172622468!2d109.52734478612243!3d-7.6118970434925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e654ba47793dda1%3A0xc10b0c777099307a!2sKost%20Eksklusif%20%22MeWah%22!5e1!3m2!1sen!2sid!4v1750948646724!5m2!1sen!2sid"
+            width="1200"
+            height="600"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-menu">
+          <div class="footer-menu-col">
+            <a href="home.html">Menu</a>
+            <a href="kamar.html">Kamar</a>
+          </div>
+          <div class="footer-menu-col">
+            <a href="akun.html">Akun</a>
+            <a href="login.html">Login</a>
+          </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-info">
+          <div class="footer-title">Kost Putri MEWAH Patemon</div>
+          <div class="footer-address">
+            Jl. Serayu IV No. 13 03/01 Desa Patemon,<br />Kecamatan Gombong,
+            Kabupaten Kebumen
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        Copyright Kos MEWAH Patemon, Gombong 2025
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+      // Toast Message Functions
+      function showToast(message, type = "success", duration = 4000) {
+        // Remove existing toast if any
+        const existingToast = document.querySelector(".toast");
+        if (existingToast) {
+          existingToast.remove();
+        }
+
+        // Create toast element
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+
+        // Set icon based on type
+        let iconClass = "fa-check-circle";
+        switch (type) {
+          case "error":
+            iconClass = "fa-exclamation-triangle";
+            break;
+          case "warning":
+            iconClass = "fa-exclamation-circle";
+            break;
+          case "info":
+            iconClass = "fa-info-circle";
+            break;
+          case "welcome":
+            iconClass = "fa-user-check";
+            break;
+          default:
+            iconClass = "fa-check-circle";
+        }
+
+        toast.innerHTML = `
+          <div class="toast-icon">
+            <i class="fas ${iconClass}"></i>
+          </div>
+          <div class="toast-message">${message}</div>
+          <button class="toast-close" onclick="hideToast()">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+
+        // Add to body
+        document.body.appendChild(toast);
+
+        // Show toast with animation
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        // Auto hide after specified duration
+        setTimeout(() => {
+          hideToast();
+        }, duration);
+      }
+
+      // Function to show welcome toast
+      function showWelcomeToast(message) {
+        showToast(message, "welcome", 5000);
+      }
+
+      // Function to hide toast
+      function hideToast() {
+        const toast = document.querySelector(".toast");
+        if (toast) {
+          toast.classList.add("hide");
+          setTimeout(() => {
+            toast.remove();
+          }, 400);
+        }
+      }
+
+      // Function to show success toast
+      function showSuccessToast(message) {
+        showToast(message, "success");
+      }
+
+      // Function to show error toast
+      function showErrorToast(message) {
+        showToast(message, "error");
+      }
+
+      // Function to show warning toast
+      function showWarningToast(message) {
+        showToast(message, "warning");
+      }
+
+      // Function to show info toast
+      function showInfoToast(message) {
+        showToast(message, "info");
+      }
+
+      var swiper = new Swiper(".mySwiper", {
+        effect: "cards",
+        grabCursor: true,
+      });
+    </script>
+  </body>
+</html>
