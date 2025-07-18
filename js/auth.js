@@ -44,7 +44,7 @@ function isPenyewa() {
 function requireLogin() {
   if (!isUserLoggedIn()) {
     // Use toast message instead of alert for better UX
-    if (typeof showErrorToast === 'function') {
+    if (typeof showErrorToast === "function") {
       showErrorToast("Anda harus login terlebih dahulu!");
     } else {
       alert("Anda harus login terlebih dahulu!");
@@ -63,7 +63,7 @@ function requireAdmin() {
 
   if (!isAdmin()) {
     // Use toast message instead of alert for better UX
-    if (typeof showErrorToast === 'function') {
+    if (typeof showErrorToast === "function") {
       showErrorToast("Anda tidak memiliki akses ke halaman ini!");
     } else {
       alert("Anda tidak memiliki akses ke halaman ini!");
@@ -82,7 +82,7 @@ function requirePenyewa() {
 
   if (!isPenyewa()) {
     // Use toast message instead of alert for better UX
-    if (typeof showErrorToast === 'function') {
+    if (typeof showErrorToast === "function") {
       showErrorToast("Anda tidak memiliki akses ke halaman ini!");
     } else {
       alert("Anda tidak memiliki akses ke halaman ini!");
@@ -140,7 +140,7 @@ async function authFetch(url, options = {}) {
   // Jika response adalah 401 (Unauthorized), logout user
   if (response.status === 401) {
     // Use toast message instead of alert for better UX
-    if (typeof showErrorToast === 'function') {
+    if (typeof showErrorToast === "function") {
       showErrorToast("Sesi Anda telah berakhir. Silakan login kembali.");
     } else {
       alert("Sesi Anda telah berakhir. Silakan login kembali.");
@@ -211,10 +211,10 @@ function clearAuthData() {
   localStorage.removeItem("authToken");
   localStorage.removeItem("login_time");
   localStorage.removeItem("admin_welcome_shown");
-  
+
   // Clear session storage for welcome messages
   const keys = Object.keys(sessionStorage);
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (key.startsWith("admin_welcome_")) {
       sessionStorage.removeItem(key);
     }

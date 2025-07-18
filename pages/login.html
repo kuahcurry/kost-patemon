@@ -654,13 +654,17 @@
           </form>
 
           <!-- Error message (hidden by default, using toast messages instead) -->
-          <div id="errorMessage" class="error-message" style="display: none;">
+          <div id="errorMessage" class="error-message" style="display: none">
             <i class="fas fa-exclamation-triangle"></i>
             <span id="errorText"></span>
           </div>
 
           <!-- Success message (hidden by default, using toast messages instead) -->
-          <div id="successMessage" class="success-message" style="display: none;">
+          <div
+            id="successMessage"
+            class="success-message"
+            style="display: none"
+          >
             <i class="fas fa-check-circle"></i>
             <span id="successText"></span>
           </div>
@@ -781,7 +785,7 @@
       function showError(message) {
         // Use toast message instead of inline error for better UX
         showErrorToast(message);
-        
+
         // Hide inline error message since we're using toast
         const errorDiv = document.getElementById("errorMessage");
         if (errorDiv) {
